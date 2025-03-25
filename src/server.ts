@@ -4,7 +4,8 @@ import morgan from 'morgan'
 import connectDB from './config/db'
 import cors from 'cors'
 import {corsConfig} from './config/cors'
-import userRouter from './routes/userRoutes'
+import userRouter from './routes/userRoute'
+import placeRouter from './routes/placeRouter'
 
 
 
@@ -21,6 +22,9 @@ app.use(express.json())
 
 // Routes
 app.use('/api/auth', userRouter)
+// app.use('/api/users', userRouter)
+
+app.use('/api/place', placeRouter)
 
 
 export default app

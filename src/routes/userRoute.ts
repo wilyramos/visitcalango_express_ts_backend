@@ -1,9 +1,7 @@
-
 import express from 'express';
-import { UserController } from '../controllers/userController';
+import UserController from '../controllers/userController';
 import { body } from 'express-validator';
 import { handleInputErrors } from '../middleware/validation';
-import { verify } from 'jsonwebtoken';
 import verifyAuth from '../middleware/auth';
 
 
