@@ -34,6 +34,7 @@ const placeSchema = new mongoose.Schema({
     category: {
         type: String,
         enum: ["natural", "cultural", "religioso"],
+        default: "natural",
         required: false
     },
     images: {

@@ -24,7 +24,7 @@ app.use(express.json())
 app.use('/api/auth', userRouter)
 // app.use('/api/users', userRouter)
 
-app.use('/api/place', placeRouter)
+app.use('/api/places', placeRouter)
 
 
 export default app

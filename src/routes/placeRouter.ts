@@ -17,6 +17,27 @@ router.post('/create',
     PlaceController.createPlace
 );
 
+router.get('/', 
+    PlaceController.getPlaces
+);
+
+router.get('/:id', 
+    PlaceController.getPlace
+);
+
+router.put('/:id', 
+
+    PlaceController.updatePlace
+);
+
+router.delete('/:id', 
+    PlaceController.deletePlace
+);
+
+// Upload images for place for specific place
+router.post('/:id/upload',
+    PlaceController.uploadImages
+)
 
 
 export default router
