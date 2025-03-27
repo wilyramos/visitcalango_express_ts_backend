@@ -1,8 +1,8 @@
 import express from 'express';
-import UserController from '../controllers/userController';
 import { body } from 'express-validator';
-import { handleInputErrors } from '../middleware/validation';
 import verifyAuth from '../middleware/auth';
+import UserController from '../controllers/UserController';
+import { handleInputErrors } from '../middleware/validation';
 
 
 const router = express.Router();
@@ -28,8 +28,8 @@ router.post('/login',
         .isEmail()
         .withMessage('Email is required'),
     body('password')
-        .isLength({ min: 6 })
-        .withMessage('Password must be at least 6 characters long'),
+        .notEmpty()
+        .withMessage('Password is required'),
 
     handleInputErrors,
     UserController.login

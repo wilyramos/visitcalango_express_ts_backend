@@ -10,21 +10,29 @@ import { v4 as uuid } from 'uuid';
 export class PlaceController {
 
     static createPlace = async (req: Request, res: Response) => {
-        const { name, description, image, location } = req.body;
+        const { name, description, image, location, category } = req.body;
         try {
             const place = new Place({
                 name,
                 description,
                 image,
-                location
+                location,
+                category
             });
 
-            await place.save();
-            res.status(201).json("Lugar turistico creado");
-
+            const newPlace = await place.save();
+            const selectedFields = {
+                _id: newPlace._id,
+                name: newPlace.name,
+                description: newPlace.description,
+                images: newPlace.images,
+                location: newPlace.location,
+                category: newPlace.category
+            }
+            res.status(201).json(selectedFields);
         } catch (error) {
             // console.log(error);
-            res.status(500).json("Internal server error");
+            res.status(500).json({ message: "Internal server error" });
         }
     }
 
@@ -114,7 +122,7 @@ export class PlaceController {
         form.parse(req, async (error, fields, files) => {
             if (error) {
                 console.error("Error al procesar los archivos:", error);
-                return res.status(400).json({ error: 'Error al procesar los archivos' });
+                return res.status(400).json({ message: 'Error al procesar los archivos' });
             }
     
             // Verifica si se reciben las imágenes
@@ -124,7 +132,7 @@ export class PlaceController {
             const images = Array.isArray(files.images) ? files.images : [files.images]; 
             
             if (images.length > 5) {
-                return res.status(400).json({ msg: 'Solo puedes subir un máximo de 5 imágenes' });
+                return res.status(400).json({ message: 'No se pueden subir más de 5 imágenes' });
             }
     
             try {
@@ -154,10 +162,11 @@ export class PlaceController {
                 );
     
                 if (!updatedPlace) {
-                    res.status(404).json({ msg: 'Lugar no encontrado' });
+                    res.status(404).json({ message: 'Lugar no encontrado' });
+                    return;
                 }
     
-                res.status(200).json({ msg: 'Imágenes subidas correctamente', images: imageUrls });
+                res.status(200).json({ message: 'Imágenes subidas correctamente', images: imageUrls });
     
             } catch (error) {
                 console.error("Error al subir las imágenes:", error);
@@ -165,6 +174,8 @@ export class PlaceController {
             }
         });
     };
+
+    
     
 }
 

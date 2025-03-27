@@ -16,6 +16,7 @@ export const verifyAuth = async (req: Request, res: Response, next: NextFunction
     const bearer = req.headers.authorization // Bearer token
     if (!bearer) {
         res.status(401).json("No token provided");
+        return;
     }
     const token = bearer.split(" ")[1];
 
@@ -29,6 +30,7 @@ export const verifyAuth = async (req: Request, res: Response, next: NextFunction
                 next();
             } else {
                 res.status(404).json("User not found");
+                return;
             }
         }
     } catch (error) {

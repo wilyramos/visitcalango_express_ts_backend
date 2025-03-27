@@ -6,13 +6,12 @@ import cors from 'cors'
 import {corsConfig} from './config/cors'
 import userRouter from './routes/userRoute'
 import placeRouter from './routes/placeRouter'
+import dotenv from 'dotenv' 
 
-
-
+dotenv.config()
 connectDB()
 const app = express()
-// app.use(cors(corsConfig));
-
+app.use(cors(corsConfig));
 
 // morgan: HTTP request logger middleware for node.js
 app.use(morgan('dev'))
