@@ -4,8 +4,6 @@ import type { Request, Response } from "express";
 import { hashPassword } from "../utils/auth";
 import { generateJWT } from "../utils/jwt";
 
-
-
 export class UserController {
     static createUser = async (req: Request, res: Response) => {
         const { name, email, password } = req.body;
