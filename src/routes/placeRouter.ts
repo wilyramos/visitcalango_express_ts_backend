@@ -1,7 +1,7 @@
 import express from 'express';
 import { body } from 'express-validator';
 import { handleInputErrors } from '../middleware/validation';
-import {PlaceController} from '../controllers/PlaceController';
+import { PlaceController } from '../controllers/PlaceController';
 
 const router = express.Router();
 
