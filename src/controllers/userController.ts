@@ -89,5 +89,3 @@ export class UserController {
         res.send("delete user");
     }
 }
-
-export default UserController;

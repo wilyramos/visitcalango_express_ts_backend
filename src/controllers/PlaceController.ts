@@ -5,8 +5,6 @@ import formidable from "formidable";
 import cloudinary from "../config/cloudinary";
 import { v4 as uuid } from 'uuid';
 
-
-
 export class PlaceController {
 
     static createPlace = async (req: Request, res: Response) => {
@@ -178,5 +176,3 @@ export class PlaceController {
     
     
 }
-
-export default PlaceController;
