@@ -1,7 +1,7 @@
 import express from 'express';
 import { body } from 'express-validator';
 import verifyAuth from '../middleware/auth';
-import {UserController} from "../controllers/UserController";
+import { UserController } from "../controllers/UserController";
 import { handleInputErrors } from '../middleware/validation';
 
 
